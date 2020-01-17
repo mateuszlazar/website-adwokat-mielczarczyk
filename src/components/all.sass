@@ -10,6 +10,9 @@ $primary-invert: $kaldi-red-invert
 $body-color: #333
 $black: #2b2523
 
+a:hover
+  color: #000000 !important
+
 .navbar .navbar-menu
   box-shadow:none !important
 
@@ -51,6 +54,12 @@ $black: #2b2523
     justify-content: center
     align-items: center
 
+.full-width-image-fit
+  max-height: 200px
+  display: block
+  padding: 1em 3em
+  margin: 0 auto
+
 .btn
     display: inline-block
     padding: 12px 16px 10px
@@ -71,6 +80,10 @@ $black: #2b2523
 .margin-top-0
   margin-top: 0 !important
 
+.navbar-start
+ margin-left: 1em;
+.navbar-item
+  text-transform: uppercase
 .navbar-item .icon
   color: $primary
 // Override for use of svg's from https://simpleicons.org/
@@ -122,6 +135,9 @@ $menu-label-color: $white-ter
   flex-basis: 35%;
   margin: 0 1.5em 0 0;
 
+h2.page-title  
+  text-transform: uppercase
+  text-align: center
 
 @import "~bulma"
 
