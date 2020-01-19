@@ -17,4 +17,4 @@ CMS.registerPreviewTemplate("o-kancelarii", SimplePagePreview);
 CMS.registerPreviewTemplate("porady-prawne-online", SimplePagePreview);
 CMS.registerPreviewTemplate("blog", BlogPostPreview);
 CMS.registerPreviewTemplate("contact", ContactPagePreview);
-CMS.registerPreviewTemplate("specialization", SpecializationPageTemplate);
+CMS.registerPreviewTemplate("specializations", SpecializationPageTemplate);
