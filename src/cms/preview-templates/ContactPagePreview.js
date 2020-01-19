@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { ContactPageTemplate } from "../../templates/contact-page";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import Hero from "../../components/Hero";
 
 const ContactPagePreview = ({ entry, widgetFor }) => {
   const data = entry.getIn(["data"]).toJS();
@@ -10,6 +11,7 @@ const ContactPagePreview = ({ entry, widgetFor }) => {
   return (
     <>
       <Navbar />
+      <Hero />
       <ContactPageTemplate
         title={entry.getIn(["data", "title"])}
         content={widgetFor("body")}

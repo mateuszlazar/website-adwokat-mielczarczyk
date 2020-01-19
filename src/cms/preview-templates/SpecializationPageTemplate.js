@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import { SpecializationPageTemplate } from "../../templates/specialization-page";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import Hero from "../../components/Hero";
 
 const SpecializationPagePreview = ({ entry, widgetFor }) => {
   return (
     <>
       <Navbar />
+      <Hero />
       <SpecializationPageTemplate
         content={widgetFor("body")}
         title={entry.getIn(["data", "title"])}
