@@ -7,20 +7,7 @@ const SpecializationPagePreview = ({ entry, widgetFor }) => {
     <SpecializationPageTemplate
       content={widgetFor("body")}
       title={entry.getIn(["data", "title"])}
-      specializations={[
-        {
-          slug: "",
-          title: "Specializacja"
-        },
-        {
-          slug: "",
-          title: "Specializacja"
-        },
-        {
-          slug: "",
-          title: "Specializacja"
-        }
-      ]}
+      order={1}
     />
   );
 };

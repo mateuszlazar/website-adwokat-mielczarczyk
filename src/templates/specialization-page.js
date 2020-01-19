@@ -4,39 +4,40 @@ import Helmet from "react-helmet";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import Content, { HTMLContent } from "../components/Content";
+import SpecializationList from "../components/SpecializationList";
 
 export const SpecializationPageTemplate = ({
   content,
   contentComponent,
   title,
   helmet,
-  specializations
+  id = null
 }) => {
   const PostContent = contentComponent || Content;
 
   return (
-    <section className="section section--blog-post">
-      {helmet || ""}
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-4 has-text-weight-bold is-bold-light">
-              {title}
-            </h1>
-            <PostContent content={content} />
-            <div className={"specialization-nav columns is-multiline"}>
-              {specializations.map(s => (
-                <div className={"column is-4"}>
-                  <Link to={s.fields.slug} className={"box"}>
-                    <p>{s.frontmatter.title}</p>
-                  </Link>
-                </div>
-              ))}
+    <>
+      <section className="section section--blog-post">
+        {helmet || ""}
+        <div className="container content">
+          <div className="columns">
+            <div className="column is-10 is-offset-1">
+              <h1 className="title is-size-4 has-text-weight-bold is-bold-light">
+                {title}
+              </h1>
+              <PostContent content={content} />
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section className={"section specialization-nav"}>
+        <div className={"container content"}>
+          <div className={"column is-10 is-offset-1"}>
+            <SpecializationList omitId={id} />
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 
@@ -49,25 +50,21 @@ SpecializationPageTemplate.propTypes = {
 };
 
 const SpecializationPage = ({ data }) => {
-  const { allMarkdownRemark, markdownRemark: post } = data;
-  const specializations = getRestOfSpecializations(
-    allMarkdownRemark.edges,
-    post.id
-  );
+  const { markdownRemark: post } = data;
 
   return (
-    <Layout>
+    <Layout pageTitle={post.frontmatter.title}>
       <SpecializationPageTemplate
         content={post.html}
         contentComponent={HTMLContent}
         helmet={
-          <Helmet titleTemplate="%s | Blog">
+          <Helmet titleTemplate="%s | Specjalizacja">
             <title>{`${post.frontmatter.title}`}</title>
             <meta name="description" content={`${post.excerpt}`} />
           </Helmet>
         }
         title={post.frontmatter.title}
-        specializations={specializations}
+        id={post.id}
       />
     </Layout>
   );
@@ -83,22 +80,6 @@ export default SpecializationPage;
 
 export const pageQuery = graphql`
   query SpecializationPageByID($id: String!) {
-    allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { frontmatter: { templateKey: { eq: "specialization-page" } } }
-    ) {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-          }
-        }
-      }
-    }
     markdownRemark(id: { eq: $id }) {
       excerpt(pruneLength: 50)
       id
@@ -109,6 +90,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-const getRestOfSpecializations = (articles, id) =>
-  articles.filter(a => a.node.id !== id).map(a => a.node);

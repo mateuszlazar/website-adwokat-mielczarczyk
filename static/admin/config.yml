@@ -60,6 +60,7 @@ collections:
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "specialization-page"}
       - {label: "Nazwa specjalizacji", name: "title", widget: "string"}
+      - {label: "Numer w kolejności specjalizacji", name: "order", widget: "number", min: 1, valueType: "int"}
       - {label: "Opis", name: "body", widget: "markdown"}
 
   - name: "blog"

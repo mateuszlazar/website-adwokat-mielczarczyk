@@ -69,7 +69,7 @@ const BlogPost = ({ data }) => {
   const [next, prev] = getPrevAndNextArticles(allMarkdownRemark.edges, post.id);
 
   return (
-    <Layout>
+    <Layout pageTitle={post.frontmatter.title}>
       <BlogPostTemplate
         content={post.html}
         contentComponent={HTMLContent}

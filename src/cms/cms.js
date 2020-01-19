@@ -1,9 +1,16 @@
+import React from "react";
 import CMS from "netlify-cms-app";
 import uploadcare from "netlify-cms-media-library-uploadcare";
 import cloudinary from "netlify-cms-media-library-cloudinary";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import SimplePagePreview from "./preview-templates/SimplePagePreview";
+import BlogPostPreview from "./preview-templates/BlogPostPreview";
+import IndexPagePreview from "./preview-templates/IndexPagePreview";
+import ContactPagePreview from "./preview-templates/ContactPagePreview";
+import SpecializationPageTemplate from "./preview-templates/SpecializationPageTemplate";
+
 const withWholePage = Component => (
   <>
     <Navbar />
@@ -11,13 +18,6 @@ const withWholePage = Component => (
     <Footer />
   </>
 );
-
-import SimplePagePreview from "./preview-templates/SimplePagePreview";
-import BlogPostPreview from "./preview-templates/BlogPostPreview";
-import IndexPagePreview from "./preview-templates/IndexPagePreview";
-import ContactPagePreview from "./preview-templates/ContactPagePreview";
-import SpecializationPageTemplate from "./preview-templates/SpecializationPageTemplate";
-\;
 
 CMS.registerMediaLibrary(uploadcare);
 CMS.registerMediaLibrary(cloudinary);

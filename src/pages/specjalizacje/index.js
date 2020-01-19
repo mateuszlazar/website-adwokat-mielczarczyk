@@ -6,7 +6,7 @@ import SpecializationList from "../../components/SpecializationList";
 export default class BlogIndexPage extends React.Component {
   render() {
     return (
-      <Layout>
+      <Layout pageTitle={"Specjalizacje"}>
         <div
           className="full-width-image-container full-width-image-container--slim margin-top-0"
           style={{
