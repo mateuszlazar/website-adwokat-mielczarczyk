@@ -3,13 +3,15 @@ import PropTypes from "prop-types";
 import { BlogPostTemplate } from "../../templates/blog-post";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import Hero from "../../components/Hero";
 
 const BlogPostPreview = ({ entry, widgetFor }) => (
   <>
     <Navbar />
+    <Hero />
     <BlogPostTemplate
       content={widgetFor("body")}
-      date={"01.01.2000"}
+      date={"(data publikacji)"}
       title={entry.getIn(["data", "title"])}
       prev={null}
       next={null}

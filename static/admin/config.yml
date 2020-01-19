@@ -45,6 +45,7 @@ collections:
           - {label: "Tytuł strony", name: "title", widget: "string"}
           - {label: "Numer telefonu", name: "phone", widget: "string"}
           - {label: "Adres email", name: "mail", widget: "string"}
+          - {label: "Facebook URL", name: "facebook", widget: "string"}
           - label: "Siedziba kancelarii"
             name: "address"
             widget: "list"
