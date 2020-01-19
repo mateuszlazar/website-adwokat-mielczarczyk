@@ -10,6 +10,9 @@ $primary-invert: $kaldi-red-invert
 $body-color: #333
 $black: #2b2523
 
+*
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+
 a:hover
   color: #000000 !important
 
@@ -44,6 +47,10 @@ a:hover
   display: flex
   justify-content: center
   align-items: center
+
+.full-width-image-container--slim
+  height: 200px
+  margin: 0 -50vw;
 
 .full-width-image
     width: 100vw
@@ -135,9 +142,26 @@ $menu-label-color: $white-ter
   flex-basis: 35%;
   margin: 0 1.5em 0 0;
 
+.blog-roll-intro
+  display: flex
+  flex-direction: column
+
+.blog-roll-intro p
+  text-transform: uppercase
+  margin: 0 !important
+  font-weight: 500
+
+.blog-roll-intro span
+  font-weight: 300
+  font-size: 0.8em
+
+.blog-roll-notification:hover
+  box-shadow: 0 0.5em 1em -0.125em rgba(43, 37, 35, 0.15), 0 0px 0 0px rgba(43, 37, 35, 0.2)  
+
 h2.page-title  
   text-transform: uppercase
   text-align: center
+
 
 @import "~bulma"
 
