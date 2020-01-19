@@ -9,7 +9,7 @@ const BlogPostPreview = ({ entry, widgetFor }) => (
     <Navbar />
     <BlogPostTemplate
       content={widgetFor("body")}
-      date={entry.getIn(["data", "date"])}
+      date={"01.01.2000"}
       title={entry.getIn(["data", "title"])}
       prev={null}
       next={null}
