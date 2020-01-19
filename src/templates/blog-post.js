@@ -12,17 +12,21 @@ export const BlogPostTemplate = ({
   description,
   tags,
   title,
-  helmet
+  date,
+  helmet,
+  prev,
+  next
 }) => {
   const PostContent = contentComponent || Content;
 
   return (
-    <section className="section">
+    <section className="section section--blog-post">
       {helmet || ""}
       <div className="container content">
         <div className="columns">
           <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
+            <span>Klaudia Mielczarczyk &bull; {date}</span>
+            <h1 className="title is-size-4 has-text-weight-bold is-bold-light">
               {title}
             </h1>
             <p>{description}</p>
@@ -40,6 +44,26 @@ export const BlogPostTemplate = ({
                 </ul>
               </div>
             ) : null}
+            <div className={"blog-post-nav columns"}>
+              {prev ? (
+                <div className={"column is-6"}>
+                  <Link to={prev.fields.slug} className={"box"}>
+                    <span>Poprzedni artykuł</span>
+                    <p>{prev.frontmatter.title}</p>
+                  </Link>
+                </div>
+              ) : (
+                <div />
+              )}
+              {next && (
+                <div className={"column is-6"}>
+                  <Link to={next.fields.slug} className={"box"}>
+                    <span>Następny artykuł</span>
+                    <p>{next.frontmatter.title}</p>
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -52,11 +76,13 @@ BlogPostTemplate.propTypes = {
   contentComponent: PropTypes.func,
   description: PropTypes.string,
   title: PropTypes.string,
-  helmet: PropTypes.object
+  helmet: PropTypes.object,
+  date: PropTypes.string
 };
 
 const BlogPost = ({ data }) => {
-  const { markdownRemark: post } = data;
+  const { allMarkdownRemark, markdownRemark: post } = data;
+  const [next, prev] = getPrevAndNextArticles(allMarkdownRemark.edges, post.id);
 
   return (
     <Layout>
@@ -64,6 +90,7 @@ const BlogPost = ({ data }) => {
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
+        date={post.frontmatter.date}
         helmet={
           <Helmet titleTemplate="%s | Blog">
             <title>{`${post.frontmatter.title}`}</title>
@@ -75,6 +102,8 @@ const BlogPost = ({ data }) => {
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
+        prev={prev}
+        next={next}
       />
     </Layout>
   );
@@ -90,11 +119,27 @@ export default BlogPost;
 
 export const pageQuery = graphql`
   query BlogPostByID($id: String!) {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+    ) {
+      edges {
+        node {
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
     markdownRemark(id: { eq: $id }) {
       id
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "DD MMMM YYYY", locale: "pl")
         title
         description
         tags
@@ -102,3 +147,18 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+function getPrevAndNextArticles(articles, id) {
+  const articlesArray = articles.map(a => a.node);
+  const currentArticleIndex = articlesArray.findIndex(a => a.id === id);
+
+  let prevArticle = null;
+  let nextArticle = null;
+  if (currentArticleIndex < articlesArray.length - 1) {
+    prevArticle = articlesArray[currentArticleIndex + 1];
+  }
+  if (currentArticleIndex > 0) {
+    nextArticle = articlesArray[currentArticleIndex - 1];
+  }
+  return [prevArticle, nextArticle];
+}

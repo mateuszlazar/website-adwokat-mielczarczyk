@@ -149,7 +149,8 @@ $menu-label-color: $white-ter
 .blog-roll-intro p
   text-transform: uppercase
   margin: 0 !important
-  font-weight: 500
+  font-weight: 600
+  letter-spacing: -0.5px
 
 .blog-roll-intro span
   font-weight: 300
@@ -158,9 +159,33 @@ $menu-label-color: $white-ter
 .blog-roll-notification:hover
   box-shadow: 0 0.5em 1em -0.125em rgba(43, 37, 35, 0.15), 0 0px 0 0px rgba(43, 37, 35, 0.2)  
 
+
+// blog post
+.section--blog-post .title
+  text-transform: uppercase
+
 h2.page-title  
   text-transform: uppercase
-  text-align: center
+  letter-spacing: -0.5px
+
+.blog-post-nav
+  display: flex
+  justify-content: space-between 
+  margin-top: 2em !important
+
+.blog-post-nav .box
+  margin: 1em 0
+  flex-direction: column
+  justify-content: center
+  background-color: #f9f9f9
+
+.blog-post-nav .box:hover
+  box-shadow: 0 0.5em 1em -0.125em rgba(43, 37, 35, 0.15), 0 0px 0 0px rgba(43, 37, 35, 0.2)  
+
+.blog-post-nav .box span
+  font-size: 0.8em
+  font-weight: 600
+  text-transform: uppercase 
 
 
 @import "~bulma"
