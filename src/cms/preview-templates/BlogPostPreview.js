@@ -13,12 +13,12 @@ const BlogPostPreview = ({ entry, widgetFor }) => {
         date={entry.getIn(["data", "date"])}
         title={entry.getIn(["data", "title"])}
         prev={{
-          title: "Lorem ipsum dolor",
-          slug: ""
+          frontmatter: { title: "Lorem ipsum dolor" },
+          fields: { slug: "" }
         }}
         next={{
-          title: "Lorem ipsum dolor",
-          slug: ""
+          frontmatter: { title: "Lorem ipsum dolor" },
+          fields: { slug: "" }
         }}
       />
       <Footer />
