@@ -1,22 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { BlogPostTemplate } from "../../templates/blog-post";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const BlogPostPreview = ({ entry, widgetFor }) => {
   return (
-    <BlogPostTemplate
-      content={widgetFor("body")}
-      date={entry.getIn(["data", "date"])}
-      title={entry.getIn(["data", "title"])}
-      prev={{
-        title: "Lorem ipsum dolor",
-        slug: ""
-      }}
-      next={{
-        title: "Lorem ipsum dolor",
-        slug: ""
-      }}
-    />
+    <>
+      <Navbar />
+      <BlogPostTemplate
+        content={widgetFor("body")}
+        date={entry.getIn(["data", "date"])}
+        title={entry.getIn(["data", "title"])}
+        prev={{
+          title: "Lorem ipsum dolor",
+          slug: ""
+        }}
+        next={{
+          title: "Lorem ipsum dolor",
+          slug: ""
+        }}
+      />
+      <Footer />
+    </>
   );
 };
 

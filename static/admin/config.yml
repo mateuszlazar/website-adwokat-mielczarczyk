@@ -25,14 +25,14 @@ collections:
           - {label: Description, name: description, widget: string}
       - file: "src/pages/o-kancelarii/index.md"
         label: "O kancelarii"
-        name: "simple-page"
+        name: "o-kancelarii"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "simple-page"}
           - {label: "Tytuł strony", name: "title", widget: "string"}
           - {label: "Treść strony", name: "body", widget: "markdown"}
       - file: "src/pages/porady-prawne-online/index.md"
         label: "Porady prawne online"
-        name: "simple-page"
+        name: "porady-prawne-online"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "simple-page"}
           - {label: "Tytuł strony", name: "title", widget: "string"}
@@ -43,7 +43,6 @@ collections:
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "simple-page"}
           - {label: "Tytuł strony", name: "title", widget: "string"}
-          - {label: "Treść strony", name: "body", widget: "markdown"}
           - {label: "Numer telefonu", name: "phone", widget: "string"}
           - {label: "Adres email", name: "mail", widget: "string"}
           - label: "Siedziba kancelarii"
@@ -52,6 +51,7 @@ collections:
             fields:
               - {label: "Adres", name: addressName, widget: string}
               - {label: "Link do mapy (embed google maps)", name: mapSrc, widget: string}
+          - {label: "Treść strony", name: "body", widget: "markdown"}
 
   - name: "specializations"
     label: "Specjalizacje"
