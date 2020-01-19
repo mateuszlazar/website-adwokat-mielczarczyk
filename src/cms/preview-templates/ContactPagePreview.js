@@ -17,6 +17,7 @@ const ContactPagePreview = ({ entry, widgetFor }) => {
         content={widgetFor("body")}
         phone={entry.getIn(["data", "phone"])}
         mail={entry.getIn(["data", "mail"])}
+        facebook={entry.getIn(["data", "facebook"])}
         address={data.address}
       />
       <Footer />

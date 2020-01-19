@@ -18,7 +18,7 @@ class SpecializationList extends React.Component {
                   <article
                     className={`blog-list-item is-child box specialization-list-box`}
                   >
-                    <h2 className="is-size-4">{post.frontmatter.title}</h2>
+                    <h2 className="is-size-5">{post.frontmatter.title}</h2>
                   </article>
                 </Link>
               </div>

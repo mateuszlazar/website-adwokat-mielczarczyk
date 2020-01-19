@@ -16,14 +16,18 @@ export const IndexPageTemplate = ({ image, heading, description }) => (
         })`
       }}
     ></div>
-    <section className="section section--gradient">
-      <div className="container">
-        <h1 className="title">{heading}</h1>
-        <h3 className="subtitle" style={{ marginBottom: 0 }}>
-          {description}
-        </h3>
-      </div>
-    </section>
+    {(heading || description) && (
+      <section className="section section--gradient">
+        <div className="container">
+          {heading && <h1 className="title">{heading}</h1>}
+          {description && (
+            <h3 className="subtitle" m style={{ marginBottom: 0 }}>
+              {description}
+            </h3>
+          )}
+        </div>
+      </section>
+    )}
     <section className="section" style={{ backgroundColor: "#f9f9f9" }}>
       <div className="container content">
         <h3 className="has-text-weight-semibold is-size-3">SPECJALIZACJE</h3>
@@ -32,7 +36,9 @@ export const IndexPageTemplate = ({ image, heading, description }) => (
     </section>
     <section className="section" style={{ backgroundColor: "#f9f9f9" }}>
       <div className="container content">
-        <h3 className="has-text-weight-semibold is-size-3">BLOG</h3>
+        <h3 className="has-text-weight-semibold is-size-3">
+          NAJNOWSZE ARTYKUŁY
+        </h3>
         <BlogRoll limit={2} />
         <div className="column is-12 has-text-centered">
           <Link className="btn" to="/blog">
