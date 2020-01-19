@@ -4,34 +4,36 @@ import { Link, graphql, StaticQuery } from "gatsby";
 
 class BlogRoll extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data, limit } = this.props;
     const { edges: posts } = data.allMarkdownRemark;
 
     return (
       <div className="columns is-multiline">
         {posts &&
-          posts.map(({ node: post }) => (
-            <div className="is-parent column is-6" key={post.id}>
-              <Link to={post.fields.slug}>
-                <article
-                  className={`blog-list-item tile is-child box blog-roll-notification`}
-                >
-                  <header>
-                    <div className={"blog-roll-intro"}>
-                      <p className="is-size-5">{post.frontmatter.title}</p>
-                      <span>{post.frontmatter.date}</span>
-                    </div>
-                  </header>
-                  <p>
-                    {post.excerpt}
-                    <br />
-                    <br />
-                    <p className="button">Czytaj dalej</p>
-                  </p>
-                </article>
-              </Link>
-            </div>
-          ))}
+          posts
+            .filter((_, i) => !limit || i < limit)
+            .map(({ node: post }) => (
+              <div className="is-parent column is-6" key={post.id}>
+                <Link to={post.fields.slug}>
+                  <article
+                    className={`blog-list-item tile is-child box blog-roll-notification`}
+                  >
+                    <header>
+                      <div className={"blog-roll-intro"}>
+                        <p className="is-size-5">{post.frontmatter.title}</p>
+                        <span>{post.frontmatter.date}</span>
+                      </div>
+                    </header>
+                    <p>
+                      {post.excerpt}
+                      <br />
+                      <br />
+                      <p className="button">Czytaj dalej</p>
+                    </p>
+                  </article>
+                </Link>
+              </div>
+            ))}
       </div>
     );
   }
@@ -45,7 +47,7 @@ BlogRoll.propTypes = {
   })
 };
 
-export default () => (
+export default ({ limit }) => (
   <StaticQuery
     query={graphql`
       query BlogRollQuery {
@@ -70,6 +72,8 @@ export default () => (
         }
       }
     `}
-    render={(data, count) => <BlogRoll data={data} count={count} />}
+    render={(data, count) => (
+      <BlogRoll data={data} count={count} limit={limit} />
+    )}
   />
 );

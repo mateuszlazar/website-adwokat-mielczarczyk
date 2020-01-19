@@ -4,23 +4,25 @@ import { Link, graphql, StaticQuery } from "gatsby";
 
 class SpecializationList extends React.Component {
   render() {
-    const { data } = this.props;
-    const { edges: specializations } = data.allMarkdownRemark;
+    const { data, omitId } = this.props;
+    let { edges: specializations } = data.allMarkdownRemark;
 
     return (
       <div className="columns is-multiline">
         {specializations &&
-          specializations.map(({ node: post }) => (
-            <div className="is-parent column is-4" key={post.id}>
-              <Link to={post.fields.slug}>
-                <article
-                  className={`blog-list-item is-child box specialization-list-box`}
-                >
-                  <h2 className="is-size-4">{post.frontmatter.title}</h2>
-                </article>
-              </Link>
-            </div>
-          ))}
+          specializations
+            .filter(({ node: post }) => post.id !== omitId)
+            .map(({ node: post }) => (
+              <div className="is-parent column is-4" key={post.id}>
+                <Link to={post.fields.slug}>
+                  <article
+                    className={`blog-list-item is-child box specialization-list-box`}
+                  >
+                    <h2 className="is-size-4">{post.frontmatter.title}</h2>
+                  </article>
+                </Link>
+              </div>
+            ))}
       </div>
     );
   }
@@ -34,12 +36,12 @@ SpecializationList.propTypes = {
   })
 };
 
-export default () => (
+export default ({ omitId = null }) => (
   <StaticQuery
     query={graphql`
       query SpecializationListQuery {
         allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___date] }
+          sort: { order: ASC, fields: [frontmatter___order] }
           filter: {
             frontmatter: { templateKey: { eq: "specialization-page" } }
           }
@@ -53,6 +55,7 @@ export default () => (
               }
               frontmatter {
                 title
+                order
                 templateKey
               }
             }
@@ -60,6 +63,8 @@ export default () => (
         }
       }
     `}
-    render={(data, count) => <SpecializationList data={data} count={count} />}
+    render={(data, count) => (
+      <SpecializationList data={data} count={count} omitId={omitId} />
+    )}
   />
 );
