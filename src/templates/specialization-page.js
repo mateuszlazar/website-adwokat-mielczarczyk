@@ -1,19 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { kebabCase } from "lodash";
 import Helmet from "react-helmet";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import Content, { HTMLContent } from "../components/Content";
 
-export const BlogPostTemplate = ({
+export const SpecializationPageTemplate = ({
   content,
   contentComponent,
   title,
-  date,
   helmet,
-  prev,
-  next
+  specializations
 }) => {
   const PostContent = contentComponent || Content;
 
@@ -23,30 +20,18 @@ export const BlogPostTemplate = ({
       <div className="container content">
         <div className="columns">
           <div className="column is-10 is-offset-1">
-            <span>Klaudia Mielczarczyk &bull; {date}</span>
             <h1 className="title is-size-4 has-text-weight-bold is-bold-light">
               {title}
             </h1>
             <PostContent content={content} />
-            <div className={"blog-post-nav columns"}>
-              {prev ? (
-                <div className={"column is-6"}>
-                  <Link to={prev.fields.slug} className={"box"}>
-                    <span>Poprzedni artykuł</span>
-                    <p>{prev.frontmatter.title}</p>
+            <div className={"specialization-nav columns is-multiline"}>
+              {specializations.map(s => (
+                <div className={"column is-4"}>
+                  <Link to={s.fields.slug} className={"box"}>
+                    <p>{s.frontmatter.title}</p>
                   </Link>
                 </div>
-              ) : (
-                <div />
-              )}
-              {next && (
-                <div className={"column is-6"}>
-                  <Link to={next.fields.slug} className={"box"}>
-                    <span>Następny artykuł</span>
-                    <p>{next.frontmatter.title}</p>
-                  </Link>
-                </div>
-              )}
+              ))}
             </div>
           </div>
         </div>
@@ -55,53 +40,52 @@ export const BlogPostTemplate = ({
   );
 };
 
-BlogPostTemplate.propTypes = {
+SpecializationPageTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
   title: PropTypes.string,
-  helmet: PropTypes.object,
-  date: PropTypes.string
+  helmet: PropTypes.object
 };
 
-const BlogPost = ({ data }) => {
+const SpecializationPage = ({ data }) => {
   const { allMarkdownRemark, markdownRemark: post } = data;
-  const [next, prev] = getPrevAndNextArticles(allMarkdownRemark.edges, post.id);
+  const specializations = getRestOfSpecializations(
+    allMarkdownRemark.edges,
+    post.id
+  );
 
   return (
     <Layout>
-      <BlogPostTemplate
+      <SpecializationPageTemplate
         content={post.html}
         contentComponent={HTMLContent}
-        date={post.frontmatter.date}
         helmet={
           <Helmet titleTemplate="%s | Blog">
             <title>{`${post.frontmatter.title}`}</title>
             <meta name="description" content={`${post.excerpt}`} />
           </Helmet>
         }
-        tags={post.frontmatter.tags}
         title={post.frontmatter.title}
-        prev={prev}
-        next={next}
+        specializations={specializations}
       />
     </Layout>
   );
 };
 
-BlogPost.propTypes = {
+SpecializationPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object
   })
 };
 
-export default BlogPost;
+export default SpecializationPage;
 
 export const pageQuery = graphql`
-  query BlogPostByID($id: String!) {
+  query SpecializationPageByID($id: String!) {
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+      filter: { frontmatter: { templateKey: { eq: "specialization-page" } } }
     ) {
       edges {
         node {
@@ -120,24 +104,11 @@ export const pageQuery = graphql`
       id
       html
       frontmatter {
-        date(formatString: "DD MMMM YYYY", locale: "pl")
         title
       }
     }
   }
 `;
 
-function getPrevAndNextArticles(articles, id) {
-  const articlesArray = articles.map(a => a.node);
-  const currentArticleIndex = articlesArray.findIndex(a => a.id === id);
-
-  let prevArticle = null;
-  let nextArticle = null;
-  if (currentArticleIndex < articlesArray.length - 1) {
-    prevArticle = articlesArray[currentArticleIndex + 1];
-  }
-  if (currentArticleIndex > 0) {
-    nextArticle = articlesArray[currentArticleIndex - 1];
-  }
-  return [prevArticle, nextArticle];
-}
+const getRestOfSpecializations = (articles, id) =>
+  articles.filter(a => a.node.id !== id).map(a => a.node);

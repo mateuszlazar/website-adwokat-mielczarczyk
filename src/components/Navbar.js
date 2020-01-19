@@ -64,7 +64,7 @@ const Navbar = class extends React.Component {
           <div id="navMenu" className={`navbar-menu ${mobileMenuState}`}>
             <div className="navbar-start has-text-centered">
               {menuItems.map(i => (
-                <Link className="navbar-item" to={i.slug}>
+                <Link className="navbar-item" to={i.slug} key={i.slug}>
                   {i.title}
                 </Link>
               ))}
