@@ -12,29 +12,8 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "src/pages/blog"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
-      - {label: "Tytuł artykułu", name: "title", widget: "string"}
-      - {label: "Data publikacji", name: "date", widget: "datetime"}
-      - {label: "Treść artykułu", name: "body", widget: "markdown"}
-
-  - label: "Specjalizacje"
-    name: "specializations"
-    folder: "src/pages/specializations"
-    slug: "{{slug}}"
-    create: true
-    fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "specialization-page"}
-      - {label: "Nazwa specjalizacji", name: "title", widget: "string"}
-      - {label: "Opis", name: "body", widget: "markdown"}
-
   - name: "pages"
-    label: "Pages"
+    label: "Strony"
     files:
       - file: "src/pages/index.md"
         label: "Strona główna"
@@ -51,24 +30,45 @@ collections:
           - {label: Main, name: main, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Image1, name: image1, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}, {label: Image2, name: image2, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}, {label: Image3, name: image3, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}]}
       - file: "src/pages/o-kancelarii/index.md"
         label: "O kancelarii"
-        name: "o-kancelarii"
+        name: "simple-page"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "simple-page"}
           - {label: "Tytuł strony", name: "title", widget: "string"}
           - {label: "Treść strony", name: "body", widget: "markdown"}
       - file: "src/pages/porady-prawne-online/index.md"
         label: "Porady prawne online"
-        name: "porady-prawne-online"
+        name: "simple-page"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "simple-page"}
           - {label: "Tytuł strony", name: "title", widget: "string"}
           - {label: "Treść strony", name: "body", widget: "markdown"}
       - file: "src/pages/kontakt/index.md"
         label: "Kontakt"
-        name: "kontakt"
+        name: "contact"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "simple-page"}
           - {label: "Tytuł strony", name: "title", widget: "string"}
           - {label: "Treść strony", name: "body", widget: "markdown"}
-          - {label: "Number telefonu", name: "phone", widget: "string"}
+          - {label: "Numer telefonu", name: "phone", widget: "string"}
           - {label: "Adres email", name: "mail", widget: "string"}
+
+  - name: "specializations"
+    label: "Specjalizacje"
+    folder: "src/pages/specjalizacje"
+    slug: "{{slug}}"
+    create: true
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "specialization-page"}
+      - {label: "Nazwa specjalizacji", name: "title", widget: "string"}
+      - {label: "Opis", name: "body", widget: "markdown"}
+
+  - name: "blog"
+    label: "Blog"
+    folder: "src/pages/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
+      - {label: "Tytuł artykułu", name: "title", widget: "string"}
+      - {label: "Data publikacji", name: "date", widget: "datetime"}
+      - {label: "Treść artykułu", name: "body", widget: "markdown"}
