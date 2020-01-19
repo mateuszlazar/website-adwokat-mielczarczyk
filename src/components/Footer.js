@@ -10,11 +10,8 @@ const Footer = class extends React.Component {
         <div className="content has-text-centered has-background-black has-text-white-ter">
           <div className="container has-background-black has-text-white-ter">
             <div className="columns">
-              <div className="column is-4">
-                <img src={whiteLogo} />
-              </div>
               <div className="column is-4 social">
-                <a
+                {/* <a
                   title="facebook"
                   href="https://www.facebook.com/Kancelaria-Adwokacka-Adwokat-Klaudia-Mielczarczyk-1764496516912134/"
                 >
@@ -23,7 +20,7 @@ const Footer = class extends React.Component {
                     alt="Facebook"
                     style={{ width: "1em", height: "1em" }}
                   />
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
