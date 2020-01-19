@@ -8,7 +8,7 @@ import useSiteMetadata from "./SiteMetadata";
 import { withPrefix } from "gatsby";
 import { Favicon } from "./Favicon";
 
-const TemplateWrapper = ({ children, pageTitle = null }) => {
+const TemplateWrapper = ({ children, pageTitle = null, showBrand = true }) => {
   const { title, description } = useSiteMetadata();
   return (
     <div>
@@ -25,8 +25,8 @@ const TemplateWrapper = ({ children, pageTitle = null }) => {
         />
       </Helmet>
       <Favicon />
-      <Navbar />
-      <Hero />
+      <Navbar showBrand={showBrand} />
+      {showBrand && <Hero />}
       <div>{children}</div>
       <Footer />
     </div>
