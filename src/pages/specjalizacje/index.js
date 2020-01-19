@@ -1,7 +1,7 @@
 import React from "react";
 
 import Layout from "../../components/Layout";
-import BlogRoll from "../../components/BlogRoll";
+import SpecializationList from "../../components/SpecializationList";
 
 export default class BlogIndexPage extends React.Component {
   render() {
@@ -22,13 +22,13 @@ export default class BlogIndexPage extends React.Component {
               padding: "1rem"
             }}
           >
-            BLOG
+            SPECJALIZACJE
           </h1>
         </div>
         <section className="section" style={{ backgroundColor: "#f9f9f9" }}>
           <div className="container">
             <div className="content">
-              <BlogRoll />
+              <SpecializationList />
             </div>
           </div>
         </section>
