@@ -32,8 +32,9 @@ const TemplateWrapper = ({ children, pageTitle = null, showBrand = true }) => {
       <Footer />
       <CookieConsent
         location="bottom"
+        containerClasses="cookie-bar"
         buttonText="Zgadzam się"
-        style={{ background: "#CC3700" }}
+        style={{ background: "#003a12" }}
         buttonStyle={{
           color: "#000",
           fontSize: "14px",
