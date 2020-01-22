@@ -1,6 +1,7 @@
 import React from "react";
 import Iframe from "react-iframe";
 import { Link, graphql, StaticQuery } from "gatsby";
+import facebookIcon from "../img/facebook.png";
 
 const Footer = class extends React.Component {
   render() {
@@ -8,8 +9,10 @@ const Footer = class extends React.Component {
       title,
       phone,
       mail,
-      facebook
+      facebook,
+      address
     } = this.props.data.markdownRemark.frontmatter;
+    const [mainAddress] = address;
     const { edges: specializations } = this.props.data.allMarkdownRemark;
     const formattedPhone = phone.replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, " ");
 
@@ -36,6 +39,21 @@ const Footer = class extends React.Component {
                 <br />
                 Adwokat Klaudia Mielczarczyk
               </h4>
+              <h4
+                className={"is-size-6"}
+                style={{
+                  fontWeight: 400,
+                  color: "white",
+                  lineHeight: "1.5rem"
+                }}
+              >
+                {mainAddress.addressName.split(",").map(s => (
+                  <>
+                    {s}
+                    <br />
+                  </>
+                ))}
+              </h4>
               <a href={`tel:${phone}`} className={"is-size-6"}>
                 tel. {formattedPhone}
               </a>
@@ -43,18 +61,19 @@ const Footer = class extends React.Component {
               <a href={`mailto:${mail}`} className={"is-size-6"}>
                 {mail}
               </a>
+              <br />
+              <br />
+              <br />
+              <a href={facebook} target={"_blank"} className={"is-size-6"}>
+                <img src={facebookIcon} alt={"fb-icon"} />
+              </a>
             </div>
             <div className="column is-4">
               <Iframe
-                src={facebook}
+                src={mainAddress.mapSrc}
                 width="100%"
-                maxWidth="340"
-                height="300"
-                style="border:none;overflow:hidden"
-                scrolling="no"
+                height="350px"
                 frameBorder="0"
-                allowTransparency="true"
-                allow="encrypted-media"
               />
             </div>
             <div className="column is-4 footer-meta">
@@ -104,6 +123,10 @@ export default () => (
             phone
             mail
             facebook
+            address {
+              addressName
+              mapSrc
+            }
           }
         }
         allMarkdownRemark(

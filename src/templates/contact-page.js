@@ -34,13 +34,57 @@ export const ContactPageTemplate = ({
               <h2 className="title page-title is-size-4 has-text-weight-bold is-bold-light">
                 {title}
               </h2>
-              <a href={`tel:${phone}`} className={"is-size-4"}>
+              <a href={`tel:${phone}`} className={"contact-link"}>
                 tel. {formattedPhone}
               </a>
               <br />
-              <a href={`mailto:${mail}`} className={"is-size-4"}>
+              <a href={`mailto:${mail}`} className={"contact-link"}>
                 {mail}
               </a>
+            </div>
+            <div className="section" style={{ paddingTop: 0 }}>
+              <form
+                className={"contact-form"}
+                method="POST"
+                action="https://formspree.io/messashi@yahoo.com"
+              >
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="[adwokatmielczarczyk.pl] Nowa wiadomość z formularza kontaktowego"
+                />
+                <div className="field">
+                  <label className="label" htmlFor={"email"}>
+                    Adres email
+                  </label>
+                  <div className="control">
+                    <input
+                      className={"input"}
+                      type="email"
+                      name="email"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label" htmlFor={"message"}>
+                    Wiadomość
+                  </label>
+                  <div className="control">
+                    <textarea
+                      className={"textarea"}
+                      name="message"
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div className="field">
+                  <button className="btn is-link" type="submit">
+                    Wyślij
+                  </button>
+                </div>
+              </form>
             </div>
 
             <div className="section" style={{ paddingTop: 0 }}>
