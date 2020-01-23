@@ -28,7 +28,13 @@ export const IndexPageTemplate = ({ image, heading, description }) => (
         </div>
       </section>
     )}
-    <section className="section" style={{ backgroundColor: "#f9f9f9" }}>
+    <section
+      className="section"
+      style={{
+        backgroundColor: "#f9f9f9",
+        paddingTop: heading || description ? "3rem" : "5rem"
+      }}
+    >
       <div className="container content">
         <h3 className="has-text-weight-semibold is-size-3">SPECJALIZACJE</h3>
         <SpecializationList />

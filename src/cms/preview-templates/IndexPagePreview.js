@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { IndexPageTemplate } from "../../templates/index-page";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Hero from "../../components/Hero";
 
 const IndexPagePreview = ({ entry }) => {
   const data = entry.getIn(["data"]).toJS();
@@ -12,7 +11,6 @@ const IndexPagePreview = ({ entry }) => {
     return (
       <>
         <Navbar />
-        <Hero />
         <IndexPageTemplate
           image={data.image}
           heading={data.heading}

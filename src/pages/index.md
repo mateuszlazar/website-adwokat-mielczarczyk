@@ -1,6 +1,6 @@
 ---
 templateKey: index-page
-image: "/img/home-index-2-min.png"
+image: "/img/home-index.png"
 heading: ""
 description: ""
 ---
