@@ -46,7 +46,7 @@ export const ContactPageTemplate = ({
               <form
                 className={"contact-form"}
                 method="POST"
-                action="https://formspree.io/messashi@yahoo.com"
+                action={`https://formspree.io/${mail}`}
               >
                 <input
                   type="hidden"

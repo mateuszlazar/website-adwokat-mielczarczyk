@@ -68,7 +68,7 @@ const Footer = class extends React.Component {
                 <img src={facebookIcon} alt={"fb-icon"} />
               </a>
             </div>
-            <div className="column is-4">
+            <div className="column is-8">
               <Iframe
                 src={mainAddress.mapSrc}
                 width="100%"
@@ -76,7 +76,7 @@ const Footer = class extends React.Component {
                 frameBorder="0"
               />
             </div>
-            <div className="column is-4 footer-meta">
+            {/* <div className="column is-4 footer-meta">
               <h3
                 className="is-size-5"
                 style={{ color: "white", textTransform: "uppercase" }}
@@ -96,7 +96,7 @@ const Footer = class extends React.Component {
               >
                 Porady prawne online
               </h3>
-            </div>
+            </div> */}
           </div>
           <div
             className={"column is-12 has-text-centered"}
