@@ -19,6 +19,7 @@ const TemplateWrapper = ({ children, pageTitle = null, showBrand = true }) => {
         <meta name="description" content={description} />
         <meta property="og:type" content="business.business" />
         <meta property="og:title" content={title} />
+        <meta name="referrer" content="origin" />
         <meta property="og:url" content="/" />
         <meta
           property="og:image"
