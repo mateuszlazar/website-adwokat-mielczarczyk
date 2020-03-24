@@ -21,7 +21,7 @@ export const IndexPageTemplate = ({ image, heading, description }) => (
         <div className="container">
           {heading && <h1 className="title">{heading}</h1>}
           {description && (
-            <h3 className="subtitle" m style={{ marginBottom: 0 }}>
+            <h3 className="subtitle" m style={{ margin: "-0.75rem 0 0" }}>
               {description}
             </h3>
           )}
