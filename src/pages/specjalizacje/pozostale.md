@@ -1,7 +1,7 @@
 ---
 templateKey: "specialization-page"
 title: Pozostałe
-order: 7
+order: 8
 ---
 
 Poza wymienionymi głównymi specjalizacjami naszej Kancelarii, udzielamy również pomocy prawnej z zakresu:
